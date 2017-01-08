@@ -9,14 +9,23 @@
 /dev/mhi_pipe_.*                                u:object_r:mhi_device:s0
 /dev/bhi                                        u:object_r:bhi_device:s0
 /dev/msm_.*                                     u:object_r:audio_device:s0
+/dev/wcd_dsp0_control                           u:object_r:audio_device:s0
+/dev/wcd-dsp-glink                              u:object_r:audio_device:s0
 /dev/usf1                                       u:object_r:usf_device:s0
 /dev/msm_dsps                                   u:object_r:sensors_device:s0
 /dev/msm_thermal_query                          u:object_r:thermal_device:s0
 /dev/nfc-nci                                    u:object_r:nfc_device:s0
 /dev/nq-nci                                     u:object_r:nfc_device:s0
 /dev/qseecom                                    u:object_r:tee_device:s0
+/dev/spcom                                      u:object_r:spcom_device:s0
+/dev/sp_kernel                                  u:object_r:skp_device:s0
+/dev/sp_ssr                                     u:object_r:sp_ssr_device:s0
+/dev/sp_keymaster                               u:object_r:sp_keymaster_device:s0
+/dev/cryptoapp                                  u:object_r:cryptoapp_device:s0
+/dev/qsee_ipc_irq_spss                          u:object_r:qsee_ipc_irq_spss_device:s0
 /dev/seemplog                                   u:object_r:seemplog_device:s0
 /dev/radio0                                     u:object_r:fm_radio_device:s0
+/dev/btpower                                    u:object_r:bt_device:s0
 /dev/rtc0                                       u:object_r:rtc_device:s0
 /dev/sdsprpc-smd                                u:object_r:dsp_device:s0
 /dev/sensors                                    u:object_r:sensors_device:s0
@@ -64,6 +73,9 @@
 /dev/qbt1000                                    u:object_r:qbt1000_device:s0
 /dev/at_.*                                      u:object_r:at_device:s0
 /dev/sg.*                                       u:object_r:sg_device:s0
+/dev/dri/card0                                  u:object_r:graphics_device:s0
+/dev/dri/controlD64                             u:object_r:graphics_device:s0
+/dev/dri/renderD128                             u:object_r:graphics_device:s0
 
 ###################################
 # Dev block nodes
@@ -123,6 +135,7 @@
 /system/bin/ATFWD-daemon                        u:object_r:atfwd_exec:s0
 /system/bin/PktRspTest                          u:object_r:diag_exec:s0
 /system/bin/audiod                              u:object_r:audiod_exec:s0
+/system/vendor/bin/nqnfcinfo                    u:object_r:nqnfcinfo_exec:s0
 /system/bin/charger_monitor                     u:object_r:charger_monitor_exec:s0
 /system/bin/hvdcp_opti                          u:object_r:hvdcp_exec:s0
 /system/bin/cnd                                 u:object_r:cnd_exec:s0
@@ -167,6 +180,7 @@
 /system/bin/tftp_server                         u:object_r:rfs_access_exec:s0
 /system/bin/hvdcp                               u:object_r:hvdcp_exec:s0
 /system/bin/qseecomd                            u:object_r:tee_exec:s0
+/system/bin/spdaemon                            u:object_r:spdaemon_exec:s0
 /system/bin/hostapd_cli                         u:object_r:hostapd_exec:s0
 /system/bin/adsprpcd                            u:object_r:adsprpcd_exec:s0
 /system/bin/wpa_cli                             u:object_r:wcnss_service_exec:s0
@@ -218,6 +232,7 @@
 /system/bin/sapd                                u:object_r:sapd_exec:s0
 /system/bin/btnvtool                            u:object_r:btnvtool_exec:s0
 /system/bin/btsnoop                             u:object_r:btsnoop_exec:s0
+/system/bin/bt_logger                           u:object_r:bt_logger_exec:s0
 /system/bin/dun-server                          u:object_r:dun-server_exec:s0
 /system/bin/wfdservice                          u:object_r:wfdservice_exec:s0
 /system/bin/wcnss_filter                        u:object_r:wcnss_filter_exec:s0
@@ -265,9 +280,9 @@
 /sys/module/msm_thermal(/.*)?                                       u:object_r:sysfs_thermal:s0
 /sys/module/msm_thermal/core_control/cpus_offlined                  u:object_r:sysfs_mpdecision:s0
 /sys/devices/f9a55000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
-/sys/devices/virtual/graphics/fb([0-2])+/hpd                        u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb([0-2])+/res_info                   u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb([0-2])+/s3d_mode                   u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-3])+/hpd                        u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-3])+/res_info                   u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-3])+/s3d_mode                   u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/mdp/caps                             u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/ad                                   u:object_r:sysfs_graphics:s0
 /sys/bus/platform/drivers/xhci_msm_hsic(/.*)?                       u:object_r:sysfs_hsic:s0
@@ -284,7 +299,7 @@
 /sys/devices/soc/soc:hbtp/secure_touch                              u:object_r:hbtp_kernel_sysfs:s0
 /sys/devices/soc/soc:hbtp/secure_touch_enable                       u:object_r:hbtp_kernel_sysfs:s0
 /sys/devices/soc/soc:hbtp/secure_touch_userspace                    u:object_r:hbtp_kernel_sysfs:s0
-
+/sys/firmware/devicetree/base/cpus(/.*)?                            u:object_r:sysfs_devices_system_cpu:s0
 ###################################
 # data files
 #
@@ -305,6 +320,7 @@
 /data/misc/ipa(/.*)?                                                u:object_r:ipacm_data_file:s0
 /data/dpm(/.*)?                                                     u:object_r:dpmd_data_file:s0
 /data/misc/qsee(/.*)?                                               u:object_r:data_qsee_file:s0
+/data/misc/spss(/.*)?                                               u:object_r:spss_data_file:s0
 /data/misc/location(/.*)?                                           u:object_r:location_data_file:s0
 /data/misc/location/mq/location-mq-s                                u:object_r:location_socket:s0
 /data/misc/location/mq/alarm_svc                                    u:object_r:location_socket:s0
@@ -339,6 +355,7 @@
 /persist/drm(/.*)?                                                  u:object_r:persist_drm_file:s0
 /persist/sensors(/.*)?                                              u:object_r:sensors_persist_file:s0
 /persist/alarm(/.*)?                                                u:object_r:persist_alarm_file:s0
+/persist/time(/.*)?                                                 u:object_r:persist_time_file:s0
 /persist/data(/.*)?                                                 u:object_r:persist_drm_file:s0
 /persist/data/tz(/.*)?                                              u:object_r:persist_drm_file:s0
 /persist/data/sfs(/.*)?                                             u:object_r:persist_drm_file:s0
