@@ -109,4 +109,4 @@ unix_socket_connect(qdmastatsd, logdr, logd);
 #read_logd(qdmastatsd);
 
 # allow qdma_prop
-set_prop(qdmastatsd, vendor_qdma_prop);
+set_prop(qdmastatsd, vendor_qdma_prop)
