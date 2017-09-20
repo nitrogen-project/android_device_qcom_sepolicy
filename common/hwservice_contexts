@@ -49,6 +49,7 @@ vendor.qti.imsrtpservice::IRTPService                        u:object_r:hal_imsr
 com.qualcomm.qti.bluetooth_audio::IBluetoothAudio            u:object_r:hal_audio_hwservice:s0
 com.qualcomm.qti.ant::IAntHci                                u:object_r:hal_bluetooth_hwservice:s0
 vendor.qti.hardware.fm::IFmHci                               u:object_r:hal_bluetooth_hwservice:s0
+vendor.qti.hardware.wipower::IWipower                        u:object_r:hal_bluetooth_hwservice:s0
 vendor.qti.hardware.perf::IPerf                              u:object_r:hal_perf_hwservice:s0
 com.qualcomm.qti.wifidisplayhal::IHDCPSession                u:object_r:wifidisplayhalservice_hwservice:s0
 vendor.qti.hardware.iop::IIop                                u:object_r:hal_iop_hwservice:s0
@@ -66,3 +67,6 @@ vendor.qti.hardware.qteeconnector::IAppConnector             u:object_r:hal_qtee
 vendor.qti.hardware.qteeconnector::IGPAppConnector           u:object_r:hal_qteeconnector_hwservice:s0
 vendor.qti.esepowermanager::IEsePowerManager                 u:object_r:hal_esepowermanager_hwservice:s0
 vendor.qti.voiceprint::IQtiVoicePrintService                 u:object_r:hal_voiceprint_hwservice:s0
+vendor.qti.hardware.tui_comm::ITuiComm                       u:object_r:hal_tui_comm_hwservice:s0
+vendor.qti.hardware.qdutils_disp::IQdutilsDisp               u:object_r:hal_qdutils_disp_hwservice:s0
+vendor.qti.hardware.sensorscalibrate::ISensorsCalibrate       u:object_r:hal_sensorscalibrate_qti_hwservice:s0
