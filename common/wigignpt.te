@@ -25,43 +25,36 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-type hal_iop_default, domain, mlstrustedsubject;
-hal_server_domain(hal_iop_default, hal_iop)
+type wigignpt, domain;
+type wigignpt_exec, exec_type, vendor_file_type, file_type;
 
-type hal_iop_default_exec, exec_type, vendor_file_type, file_type;
-init_daemon_domain(hal_iop_default)
+init_daemon_domain(wigignpt)
+#use bypass because net_admin capability is needed
+hal_server_domain_bypass(wigignpt, hal_wigig_npt)
 
-# Allow hwbinder call from hal client to server
-binder_call(hal_iop_client, hal_iop_server)
+#allows calls between client and server and vice-versa
+binder_call(hal_wigig_npt_client, hal_wigig_npt_server)
+binder_call(hal_wigig_npt_server, hal_wigig_npt_client)
 
-# Add hwservice related rules
-add_hwservice(hal_iop_server, hal_iop_hwservice)
-allow hal_iop_client hal_iop_hwservice:hwservice_manager find;
+#allow hal clients to find the service
+allow hal_wigig_npt_client hal_wigig_npt_hwservice:hwservice_manager find;
 
-# Allow access for /proc
-allow hal_iop_default proc:file rw_file_perms;
+#register hal service
+add_hwservice(hal_wigig_npt, hal_wigig_npt_hwservice)
 
-#Allow Access for /data/vendor/iop
-allow hal_iop iop_data_file:dir rw_dir_perms;
-allow hal_iop iop_data_file:file create_file_perms;
+# read wigig properties
+get_prop(hal_wigig_npt, wigig_prop);
 
-#Allow access for /data/data
-allow hal_iop_default app_data_file:dir r_dir_perms;
-allow hal_iop_default app_data_file:file r_file_perms ;
+#allow updating network stack parameters under /proc/sys/net
+#this also requires net_admin capability
+allow hal_wigig_npt proc_net:file rw_file_perms;
+allow hal_wigig_npt self:capability net_admin;
 
-#Allow access for /data/app
-allow hal_iop_default apk_data_file:dir r_dir_perms;
-allow hal_iop_default apk_data_file:file r_file_perms ;
+#update wigig0 network parameters like rps_cpus and gro_flush_timeout
+allow hal_wigig_npt sysfs_wigig:file rw_file_perms;
 
-#Allow access for /data/app/oat
-allow hal_iop_default dalvikcache_data_file:dir r_dir_perms;
-allow hal_iop_default dalvikcache_data_file:file r_file_perms ;
+#update bond0 rps_cpus (FST)
+allow hal_wigig_npt sysfs_bond0:file rw_file_perms;
 
-#Allow access for /data/app/oat
-allow hal_iop_default system_data_file:dir r_dir_perms;
-allow hal_iop_default system_data_file:file r_file_perms ;
-
-allow hal_iop self:capability {
-      dac_override  # for database operations
-      dac_read_search # For database operations
-};
+#listen on /dev/socket/wigignpt
+allow hal_wigig_npt hal_wigig_npt:unix_stream_socket { listen accept read write };
