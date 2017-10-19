@@ -25,29 +25,18 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# define SELinux domain
+type hal_drm_widevine, domain;
+hal_server_domain(hal_drm_widevine, hal_drm)
 
-userdebug_or_eng(`
-    diag_use(hal_sensors)
-    allow hal_sensors debugfs_tracing:file { open write };
-')
-allow hal_sensors persist_file:dir r_dir_perms;
-allow hal_sensors self:socket create_socket_perms;
-allowxperm hal_sensors self:socket ioctl msm_sock_ipc_ioctls;
-allow hal_sensors sysfs_socinfo:file r_file_perms;
+type hal_drm_widevine_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_drm_widevine)
 
-allow hal_sensors sensors_persist_file:dir create_dir_perms;
-allow hal_sensors sensors_persist_file:file create_file_perms;
-allow hal_sensors sysfs_data:file r_file_perms;
+allow hal_drm mediacodec:fd use;
+allow hal_drm { appdomain -isolated_app }:fd use;
 
-# Allow access to ion memory allocation device
-allow hal_sensors ion_device:chr_file rw_file_perms;
-allow hal_sensors hal_graphics_allocator:fd use;
-
-# Allow access to FastRPC
-allow hal_sensors qdsp_device:chr_file r_file_perms;
-
-allow hal_sensors sysfs_sensors:dir r_dir_perms;
-allow hal_sensors sysfs_sensors:file rw_file_perms;
-allow hal_sensors sysfs_sensors:lnk_file read;
-allow hal_sensors input_device:dir r_dir_perms;
-allow hal_sensors input_device:chr_file r_file_perms;
+# The QTI DRM-HAL implementation uses a vendor-binder service provided
+# by the HWC HAL.
+vndbinder_use(hal_drm_widevine);
+allow hal_drm_widevine qdisplay_service:service_manager { find };
+binder_call(hal_drm_widevine, hal_graphics_composer)

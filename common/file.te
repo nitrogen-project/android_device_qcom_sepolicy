@@ -52,6 +52,7 @@ type msm_irqbalance_socket, file_type;
 type sensors_socket, file_type;
 type sensors_data_file, file_type, data_file_type;
 type sensors_persist_file, file_type;
+type sysfs_sensors, sysfs_type, fs_type;
 
 #type for thermal-engine
 type thermal_socket, file_type;
@@ -239,6 +240,7 @@ type persist_time_file, file_type;
 # kgsl file type for sysfs access
 type sysfs_kgsl, sysfs_type, fs_type;
 type sysfs_kgsl_proc, sysfs_type, fs_type;
+type sysfs_kgsl_gpuclk, sysfs_type, fs_type;
 
 # secure touch files
 type sysfs_securetouch, fs_type, sysfs_type;
@@ -255,6 +257,7 @@ type sysfs_laser, fs_type, sysfs_type;
 # QDMA data files
 type qdma_data_file, file_type, data_file_type;
 type qdma_app_data_file, file_type, data_file_type;
+type qdma_socket, file_type;
 
 # path to debugfs use this whic should be only used
 # in debug builds
@@ -295,3 +298,9 @@ type sysfs_msm_power, fs_type, sysfs_type;
 
 # Data type for QVOP
 type qvop-daemon_data_file, file_type, data_file_type;
+
+# /data/vendor/tombstones/ file
+type vendor_tombstone_data_file, file_type, data_file_type;
+
+# SFS listener data file
+type data_tzstorage_file, file_type, data_file_type;
