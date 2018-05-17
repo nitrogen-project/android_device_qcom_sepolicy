@@ -74,3 +74,6 @@ allow mm-qcamerad self:socket create_socket_perms;
 allowxperm mm-qcamerad self:socket ioctl msm_sock_ipc_ioctls;
 
 allow mm-qcamerad sysfs_data:file r_file_perms;
+
+allow mm-qcamerad sysfs:file { open read };
+allow mm-qcamerad sysfs_graphics:file { open read };
