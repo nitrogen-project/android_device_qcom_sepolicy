@@ -5,8 +5,19 @@ type sapd_exec, exec_type, vendor_file_type, file_type;
 type btsnoop, bluetoothdomain;
 type btsnoop_exec, exec_type, vendor_file_type, file_type;
 
-type btnvtool, bluetoothdomain;
+type btnvtool, domain;
 type btnvtool_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(btnvtool);
+
+allow btnvtool persist_file:dir rw_dir_perms;
+allow btnvtool persist_file:file create_file_perms;
+allow btnvtool persist_bluetooth_file:dir rw_dir_perms;
+allow btnvtool persist_bluetooth_file:file create_file_perms;
+r_dir_file(btnvtool, persist_file)
+allow btnvtool persist_file:file w_file_perms;
+allow btnvtool persist_bluetooth_file:file w_file_perms;
+allow btnvtool bluetooth_prop:file r_file_perms;
 
 type fmhal_service, bluetoothdomain;
 type fmhal_service_exec, exec_type, vendor_file_type, file_type;
