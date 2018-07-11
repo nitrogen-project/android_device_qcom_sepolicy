@@ -49,6 +49,7 @@ type vendor_persist_mmi_file, file_type, vendor_persist_type;
 type persist_misc_file, file_type , vendor_persist_type;
 type persist_bms_file, file_type , vendor_persist_type;
 type persist_secnvm_file, file_type , vendor_persist_type;
+type persist_hvdcp_file, file_type , vendor_persist_type;
 
 #file type for restricting proc read by audiod
 type proc_audiod, fs_type, proc_type;
@@ -60,6 +61,9 @@ type msm_irqbalance_socket, file_type;
 type sensors_socket, file_type;
 type sensors_persist_file, file_type, vendor_persist_type;
 type sysfs_sensors, sysfs_type, fs_type;
+
+#VirtualKeys file type
+type sysfs_virtualkeys, sysfs_type, fs_type;
 
 #type for thermal-engine
 type thermal_socket, file_type;
@@ -108,6 +112,7 @@ type mpctl_data_file, file_type, data_file_type;
 type lm_data_file, file_type, data_file_type;
 
 type sysfs_devfreq, fs_type, sysfs_type;
+type sysfs_devfreq_l3cdsp, fs_type, sysfs_type;
 type sysfs_mmc_host, fs_type, sysfs_type;
 type sysfs_scsi_host, fs_type, sysfs_type;
 type sysfs_cpu_boost, fs_type, sysfs_type;
@@ -234,7 +239,7 @@ type wifi_vendor_hostapd_socket, file_type, data_file_type;
 type hostapd_socket, file_type, data_file_type;
 
 #widevine data file
-type vendor_mediadrm_data_file, file_type, data_file_type;
+type mediadrm_vendor_data_file, file_type, data_file_type;
 
 # wififtmd socket file
 type wififtmd_socket, file_type;
@@ -353,3 +358,6 @@ typeattribute mnt_vendor_file vendor_persist_type;
 
 #NNHAL files
 type hal_neuralnetworks_data_file, file_type, data_file_type;
+
+# vendor scve data file
+type vendor_scve_data_file, file_type, data_file_type;
