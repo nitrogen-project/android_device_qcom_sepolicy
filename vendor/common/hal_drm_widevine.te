@@ -43,3 +43,4 @@ allow hal_drm_widevine qdisplay_service:service_manager { find };
 hal_client_domain(hal_drm_widevine, hal_graphics_composer);
 allow hal_drm_widevine mediadrm_vendor_data_file:dir create_dir_perms;
 allow hal_drm_widevine mediadrm_vendor_data_file:file create_file_perms;
+allow hal_drm_widevine hal_allocator:fd use;

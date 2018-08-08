@@ -184,8 +184,8 @@ hal_client_domain(system_app, hal_perf)
 
 #allow only system_app with userdebug to access ioctl
 userdebug_or_eng(`
-  allowxperm system_app self:socket ioctl msm_sock_ipc_ioctls;
-  allow system_app self:socket create_socket_perms;
+  allowxperm system_app self:{ socket qipcrtr_socket } ioctl msm_sock_ipc_ioctls;
+  allow system_app self:{ socket qipcrtr_socket } create_socket_perms;
 ')
 
 #allow system app to interact with the esepowermanager
@@ -200,6 +200,9 @@ set_prop(system_app, wfd_service_prop);
 userdebug_or_eng(`
 allow system_app wfd_debug_prop:file r_file_perms;
 ')
+
+# allow system app to set mirrorlink prop
+set_prop(system_app, vendor_mirrorlink_prop);
 
 #secureUI
 hal_client_domain(system_app, hal_qdutils_disp);
