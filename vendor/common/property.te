@@ -28,6 +28,7 @@ type ctl_vendor_qmuxd_prop, property_type;
 type ctl_vendor_netmgrd_prop, property_type;
 type ctl_vendor_port-bridge_prop, property_type;
 type ctl_qcrild_prop, property_type;
+type ctl_atfwd_prop, property_type;
 type vendor_tee_listener_prop, property_type;
 type ctl_vendor_rild_prop, property_type;
 type vendor_disable_spu_prop, property_type;
@@ -201,6 +202,3 @@ type qvr_prop, property_type;
 #seccam property
 type vendor_seccam_prop, property_type;
 type vendor_core_ctl_prop, property_type;
-
-#face3d
-type face3d_producer_prop, property_type;

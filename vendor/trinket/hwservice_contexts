@@ -25,45 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-type vendor_biometricsface, domain;
-type vendor_biometricsface_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(vendor_biometricsface)
-
-hal_server_domain(vendor_biometricsface, hal_biometricsface)
-
-add_hwservice(hal_biometricsface_server, hal_biometricsface_hwservice)
-
-allow hal_biometricsface_client hal_biometricsface_hwservice:hwservice_manager find;
-
-binder_call(hal_biometricsface_client, hal_biometricsface_server)
-binder_call(hal_biometricsface_server, hal_biometricsface_client)
-
-r_dir_file(vendor_biometricsface, adsprpcd_file)
-
-#  Access for ion_memory
-allow vendor_biometricsface ion_device:chr_file rw_file_perms;
-
-#  Access for qseecom_memory
-allow vendor_biometricsface tee_device:chr_file rw_file_perms;
-
-#  Access for DSP/QDSP device
-allow vendor_biometricsface qdsp_device:chr_file rw_file_perms;
-allow vendor_biometricsface dsp_device:chr_file rw_file_perms;
-
-#  Access for sdcard
-userdebug_or_eng('
-allow vendor_biometricsface sdcard_type:dir rw_dir_perms;
-allow vendor_biometricsface sdcard_type:file create_file_perms;
-')
-
-#Access for graphics buffer
-hal_client_domain(vendor_biometricsface, hal_graphics_allocator);
-
-#  Access for /data/vendor/misc/face3d_dir
-allow vendor_biometricsface vendor_biometricsface_data_file:dir create_dir_perms;
-allow vendor_biometricsface vendor_biometricsface_data_file:file create_file_perms;
-
-# Allow to read persist.biometrics.face3d.producer,adsprpc prop
-get_prop(vendor_biometricsface, face3d_producer_prop);
-get_prop(vendor_biometricsface, adsprpc_prop);
+com.fingerprints.extension::IFingerprintEngineering u:object_r:hal_fingerprint_hwservice:s0
+com.fingerprints.extension::IFingerprintAuthenticator u:object_r:hal_fingerprint_hwservice:s0
+com.fingerprints.extension::IFingerprintNavigation u:object_r:hal_fingerprint_hwservice:s0
+com.fingerprints.extension::IFingerprintSensorTest u:object_r:hal_fingerprint_hwservice:s0
+com.fingerprints.extension::IFingerprintCalibration u:object_r:hal_fingerprint_hwservice:s0
