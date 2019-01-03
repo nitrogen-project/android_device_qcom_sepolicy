@@ -107,3 +107,15 @@ attribute hal_scve_server;
 attribute hal_mirrorlink;
 attribute hal_mirrorlink_client;
 attribute hal_mirrorlink_server;
+
+attribute hal_pasrmanager;
+attribute hal_pasrmanager_client;
+attribute hal_pasrmanager_server;
+
+attribute hal_wifilearner;
+attribute hal_wifilearner_client;
+attribute hal_wifilearner_server;
+
+attribute hal_seccam;
+attribute hal_seccam_client;
+attribute hal_seccam_server;

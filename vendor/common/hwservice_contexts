@@ -58,10 +58,9 @@ vendor.qti.hardware.alarm::IAlarm                            u:object_r:hal_alar
 com.qualcomm.qti.uceservice::IUceService                     u:object_r:hal_imsrcsd_hwservice:s0
 vendor.qti.ims.callinfo::IService                            u:object_r:hal_imscallinfo_hwservice:s0
 com.qualcomm.qti.imscmservice::IImsCmService                 u:object_r:hal_imsrcsd_hwservice:s0
-com.quicinc.cne.api::IApiService                             u:object_r:hal_cne_hwservice:s0
-com.quicinc.cne.server::IServer                              u:object_r:hal_cne_hwservice:s0
 vendor.qti.hardware.data.latency::ILinkLatency               u:object_r:hal_latency_hwservice:s0
 vendor.qti.data.factory::IFactory                            u:object_r:hal_datafactory_hwservice:s0
+vendor.qti.hardware.data.connection::IDataConnection         u:object_r:hal_dataconnection_hwservice:s0
 vendor.qti.hardware.vpp::IHidlVppService                     u:object_r:hal_vpp_hwservice:s0
 vendor.qti.hardware.wigig.supptunnel::ISuppTunnelProvider    u:object_r:hal_wigig_hwservice:s0
 vendor.qti.hardware.wigig.netperftuner::INetPerfTuner        u:object_r:hal_wigig_npt_hwservice:s0
@@ -69,6 +68,7 @@ vendor.qti.hardware.qteeconnector::IAppConnector             u:object_r:hal_qtee
 vendor.qti.hardware.qteeconnector::IGPAppConnector           u:object_r:hal_qteeconnector_hwservice:s0
 vendor.qti.esepowermanager::IEsePowerManager                 u:object_r:hal_esepowermanager_hwservice:s0
 vendor.qti.voiceprint::IQtiVoicePrintService                 u:object_r:hal_voiceprint_hwservice:s0
+vendor.qti.power.pasrmanager::IPasrManager                   u:object_r:hal_pasrmanager_hwservice:s0
 # Below rules are added to support the devices that are using the HALs before they are moved to
 # vendor.qti.hardware. They are used as it is to maintain the integrity of the software.
 vendor.qti.qcril.am::IQcRilAudio                             u:object_r:hal_telephony_hwservice:s0
@@ -88,3 +88,6 @@ vendor.qti.hardware.scve.panorama::IPanoramaStitching           u:object_r:hal_s
 vendor.qti.hardware.scve.objecttracker::IObjectTracker          u:object_r:hal_scve_hwservice:s0
 vendor.qti.hardware.wifi.hostapd::IHostapdVendor             u:object_r:hal_wifi_hostapd_hwservice:s0
 vendor.qti.hardware.mlshal::IMlsDap                          u:object_r:hal_mirrorlink_hwservice:s0
+vendor.qti.hardware.mlshal::IMlsVnc                          u:object_r:hal_mirrorlink_hwservice:s0
+vendor.qti.hardware.wifi.wifilearner::IWifiStats             u:object_r:hal_wifilearner_hwservice:s0
+vendor.qti.hardware.seccam::ISecCam                          u:object_r:hal_seccam_hwservice:s0
